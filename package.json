@@ -1,0 +1,11 @@
+{
+  "name": "swe_petryna",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "volodymyr_petryna",
+  "license": "ISC"
+}
