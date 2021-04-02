@@ -15,7 +15,7 @@ let digital_root = (number) => {
     return buffer.toString().length === 1 ? buffer : digital_root(buffer)
 }
 
-let pair_count = (arr, target) => arr.flatMap(v => arr.map(e => v + e)).filter(e => e === target).length / 2
+let pair_count = (arr, target) => arr.flatMap((v, vi) => arr.map((e, ei) => vi === ei ? NaN : v + e)).filter(e => e === target).length / 2
 
 let name_sort = (data, main_delim, sec_delim) => Array.from(data
     .split(main_delim)
