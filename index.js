@@ -25,23 +25,17 @@ let name_sort = (data, main_delim, sec_delim) => Array.from(data
     .flatMap(s => s[1].map(n => `(${s[0].toUpperCase()}, ${n.toUpperCase()})`))
     .reduce((acc, s) => acc + s)
 
-//sry for this solution...
 let next_bigger = (number) => {
-    let data = Array.from(String(number), Number)
-    const changeMask = data
-        .slice(1)
+    const [ans, [_, to], [val, __]] = Array.from(String(number), Number)
         .reverse()
-        .reduce((acc, n) => acc.concat([acc[acc.length - 1].concat(n)]), [[]])
-        .slice(1)
-        .map(r => r.reduce((acc, n, ni) => (n > acc[0]) ? [n, ni] : acc, [-1, -1]))
-    const rootMask = data.reverse().slice(1).map((r, i) => [r, i + 1])
-    const solution = changeMask
-        .map((k, i) => [k, rootMask[i]])
-        .find(([rep, root]) => rep[0] > root[0])
-    if (solution) {
-        [data[solution[1][1]], data[solution[0][1]]] = [data[solution[0][1]], data[solution[1][1]]]
-        return parseInt(data.reverse().join(""))
-    } else return -1
+        .reduce((acc, n, ni) =>
+                acc[2][0] !== -1 ? [acc[0].concat(n), acc[1], acc[2]] :
+                    n < acc[1][0] ? [acc[0].concat(acc[1][0]), acc[1], [n, ni]] :
+                        n > acc[1][0] ? [acc[0].concat(n), [n, ni], acc[2]] :
+                            acc,
+            [[], [-1, -1], [-1, -1]]
+        );
+    return val === -1 ? -1 : parseInt([...ans.slice(0, to), val, ...ans.slice(to + 1)].reverse().join(""))
 }
 
 let to_ip_string = (number) => Array(4).fill(number).map((n, i) => (n >> (i * 8)) & 255).reverse().join(".")
