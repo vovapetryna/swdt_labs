@@ -5,16 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
-    "test_cucumber": "cucumber-js"
+    "test_cucumber": "cucumber-js",
+    "test_tractor": "protractor ./protractor.conf.js"
   },
   "author": "volodymyr_petryna",
   "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "^7.1.0",
-    "chai": "^4.3.4"
+    "chai": "^4.3.4",
+    "protractor-cucumber-framework": "^8.0.4"
   },
   "dependencies": {
     "chromedriver": "^90.0.0",
-    "selenium-webdriver": "^4.0.0-beta.3"
+    "selenium-webdriver": "^4.0.0-beta.3",
+    "protractor": "^7.0.0"
   }
 }
